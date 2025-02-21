@@ -1,0 +1,25 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  GITHUB_TOKEN: $(GITHUB_TOKEN)
+  CHECKMARX_PROJECT_NAME: 'WebGoat'
+  AI_SERVICE_ENDPOINT: 'your-ai-service-endpoint'
+  AI_SERVICE_KEY: 'your-ai-service-key'
+
+stages:
+- stage: Build
+  jobs:
+  - job: Build
+    steps:
+    - checkout: self
+      persistCredentials: true
+
+    - script: |
+        # Build your project
+        echo "Building the project..."
+        # Add your build commands here
+      displayName: 'Build package'
